@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - trabajo_de_SF2</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/trabajo_de_SF2.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar-custom">
+            <div class="navbar-container">
+                <!-- Logo -->
+                <div class="navbar-brand-custom">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">
+                        <span class="brand-icon">⚡</span>
+                    </a>
+                </div>
+
+                <!-- Menu Items -->
+                <ul class="navbar-menu">
+                    <li class="nav-item-custom">
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link-custom active">Home</a>
+                    </li>
+                    <li class="nav-item-custom">
+                        <a href="#" class="nav-link-custom">Dashboard</a>
+                    </li>
+                    <li class="nav-item-custom dropdown-custom">
+                        <a href="#" class="nav-link-custom">Product <span class="dropdown-icon">▼</span></a>
+                    </li>
+                    <li class="nav-item-custom dropdown-custom">
+                        <a href="#" class="nav-link-custom">Services <span class="dropdown-icon">▼</span></a>
+                    </li>
+                    <li class="nav-item-custom dropdown-custom">
+                        <a href="#" class="nav-link-custom">Tools <span class="dropdown-icon">▼</span></a>
+                    </li>
+                    <li class="nav-item-custom dropdown-custom">
+                        <a href="#" class="nav-link-custom">Resources <span class="dropdown-icon">▼</span></a>
+                    </li>
+                    <li class="nav-item-custom">
+                        <a href="#" class="nav-link-custom">Pricing</a>
+                    </li>
+                </ul>
+
+                <!-- Right Section -->
+                <div class="navbar-right">
+                    <button class="theme-toggle">🌙</button>
+                    <a href="#" class="btn-signin">Sign In</a>
+                    <a href="#" class="btn-signup">Sign Up</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-main">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - trabajo_de_SF2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

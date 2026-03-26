@@ -1,0 +1,96 @@
+C:\Users\ALONSO\Desktop\trabajo de SF2\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\bin\Debug\net9.0\appsettings.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\bin\Debug\net9.0\trabajo de SF2.staticwebassets.runtime.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\bin\Debug\net9.0\trabajo de SF2.staticwebassets.endpoints.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\bin\Debug\net9.0\trabajo de SF2.exe
+C:\Users\ALONSO\Desktop\trabajo de SF2\bin\Debug\net9.0\trabajo de SF2.deps.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\bin\Debug\net9.0\trabajo de SF2.runtimeconfig.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\bin\Debug\net9.0\trabajo de SF2.dll
+C:\Users\ALONSO\Desktop\trabajo de SF2\bin\Debug\net9.0\trabajo de SF2.pdb
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\trabajo de SF2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\trabajo de SF2.AssemblyInfoInputs.cache
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\trabajo de SF2.AssemblyInfo.cs
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\trabajo de SF2.csproj.CoreCompileInputs.cache
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\trabajo de SF2.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\trabajo de SF2.RazorAssemblyInfo.cache
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\trabajo de SF2.RazorAssemblyInfo.cs
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\scopedcss\bundle\trabajo de SF2.styles.css
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\scopedcss\projectbundle\trabajo de SF2.bundle.scp.css
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\awhtci40nf-61n19gt1b8.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\yyfhilq0go-xtxxf3hu2r.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\rivpxvinnu-bqjiyaj88i.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\yqiucedlmr-c2jlpeoesf.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\4ewmdz6ii3-erw9l3u2r3.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\a8ewpc2qu9-aexeepp0ev.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\ehznjce8b1-d7shbmvgxk.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\h48cjjjdb3-ausgxo2sd3.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\52gu0qta4f-k8d9w2qqmf.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\hc88m2ymqp-cosvhxvwiu.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\tayluqvhx4-ub07r2b239.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\e5msmcipr0-fvhpjtyr6v.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\tjbaw5lnfw-b7pk76d08c.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\7zvx2h8dtm-fsbi9cje9m.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\82msgqy6zf-rzd6atqjts.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\gpb4fzyyfd-ee0r1s7dh0.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\vdc0jlzrty-dxx9fxp4il.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\qi6h5vlgzr-jd9uben2k1.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\4eo1gghc59-khv3u5hwcm.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\0515jttk2c-r4e9w2rdcm.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\2e6ckgfcn2-lcd1t2u6c8.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\zcjmlajksc-c2oey78nd0.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\2dm2q8dl3j-tdbxkamptv.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\gc5kw59awc-j5mq2jizvt.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\b9aqq48h2b-06098lyss8.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\qa8wtkqbip-nvvlpmu67g.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\9athjamonm-s35ty4nyc5.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\99lxwzdgts-pj5nd1wqec.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\0uu2675lyi-46ein0sx1k.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\i0a297qzce-v0zj4ognzu.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\ljbn8tie6y-37tfw0ft22.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\ka48cpmblw-hrwsygsryq.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\fixzsm7fmn-pk9g2wxc8p.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\pj026llh0c-ft3s53vfgj.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\jb04j02yh1-6cfz1n2cew.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\jxusfmjzni-6pdc2jztkx.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\x1ib5pw7is-493y06b0oq.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\cpt7blb1z3-iovd86k7lj.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\sozs4jabzc-vr1egmr9el.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\nottvoerub-kbrnm935zg.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\pdshtulzkc-jj8uyg4cgr.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\3ze9dtvwhg-y7v9cxd14o.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\kxmqxipvh1-notf2xhcfb.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\5xf7xw2hp0-h1s4sie4z3.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\5to98m7gem-63fj8s7r0e.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\d9gcoi5xlw-0j3bgjxly4.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\4h6t8g22nb-47otxtyo56.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\9jfieaoch7-4v8eqarkd7.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\35ydzx06uo-356vix0kms.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\mfehudjcjk-83jwlth58m.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\lsfi6lnvri-mrlpezrjn3.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\ajxmojw582-lzl9nlhx6b.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\6wzppe89y6-ag7o75518u.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\x1sx067ipm-x0q3zqp4vz.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\25rfjj09cx-0i3buxo5is.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\4i9i4uncqx-o1o13a6vjx.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\x7hd8uk22r-ttgo8qnofa.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\pdke2wzqxh-2z0ns9nrw6.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\j2i2dvbcf0-muycvpuwrr.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\ippfoltrrg-87fc7y1x7t.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\fxupc5ep4e-mlv21k5csn.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\tfrhcdpf46-n9oi0nln4j.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\5qwm37ylga-n9oi0nln4j.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\staticwebassets.build.json.cache
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\trabajo de SF2.dll
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\refint\trabajo de SF2.dll
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\trabajo de SF2.pdb
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\trabajo de SF2.genruntimeconfig.cache
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\ref\trabajo de SF2.dll
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\7v2w5zsqnh-4g7ic1qgqm.gz
