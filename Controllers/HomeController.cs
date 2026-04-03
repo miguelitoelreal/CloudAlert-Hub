@@ -18,6 +18,35 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult Dashboard()
+    {
+        var model = new DashboardModel
+        {
+            Status = "Operativo",
+            LastValidation = "Hace 45s",
+            LatencyMs = 124,
+            UptimePercent = 100,
+            LastSyncTime = "12:45:03 PM",
+            CriticalServices = new List<CriticalService>
+            {
+                new CriticalService { Provider = "AWS CORE SERVICES", ServiceName = "EC2 Instances", Status = "OK", StatusColor = "#10b981", Icon = "✓" },
+                new CriticalService { Provider = "AWS CORE SERVICES", ServiceName = "S3 Storage", Status = "OK", StatusColor = "#10b981", Icon = "✓" },
+                new CriticalService { Provider = "AWS CORE SERVICES", ServiceName = "Lambda Serverless", Status = "WARNING", StatusColor = "#f59e0b", Icon = "⚠" },
+                new CriticalService { Provider = "MICROSOFT AZURE", ServiceName = "Entra ID (Auth)", Status = "OK", StatusColor = "#10b981", Icon = "✓" },
+                new CriticalService { Provider = "MICROSOFT AZURE", ServiceName = "SQL Managed Instance", Status = "CRITICAL", StatusColor = "#ef4444", Icon = "✕" },
+                new CriticalService { Provider = "MICROSOFT AZURE", ServiceName = "App Services", Status = "OK", StatusColor = "#10b981", Icon = "✓" }
+            },
+            ApiSyncs = new List<ApiSync>
+            {
+                new ApiSync { Name = "AWS CloudWatch", Status = "EXITOSO", StatusColor = "#10b981", LastSync = "Hace 2 min", SyncType = "Live Auto-Sync" },
+                new ApiSync { Name = "Azure Resource Graph", Status = "DEGRADADO", StatusColor = "#f59e0b", LastSync = "Hace 38 min", SyncType = "Stale. Remotizado" },
+                new ApiSync { Name = "M365 Admin Center", Status = "EXITOSO", StatusColor = "#10b981", LastSync = "Hace 12 min", SyncType = "Stale. Conectado" }
+            }
+        };
+
+        return View(model);
+    }
+
     public IActionResult Privacy()
     {
         return View();

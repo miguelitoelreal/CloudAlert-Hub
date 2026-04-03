@@ -1,0 +1,478 @@
+@model trabajo_de_SF2.Models.DashboardModel
+
+@{
+    ViewData["Title"] = "Resumen de Infraestructura";
+}
+
+<div class="dashboard-container">
+    <!-- Header con Motor de Análisis -->
+    <div class="dashboard-header">
+        <div class="header-left">
+            <h1 class="dashboard-title">Resumen de Infraestructura</h1>
+            <p class="dashboard-subtitle">Panel simplificado de salud y sincronización</p>
+        </div>
+        <div class="header-right">
+            <div class="motor-analisis">
+                <span class="motor-label">MOTOR DE ANÁLISIS</span>
+                <span class="motor-icon">🟢</span>
+            </div>
+            <button class="btn-actualizar">🔄 ACTUALIZAR</button>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="dashboard-grid">
+        <!-- Left Column - Critical Services -->
+        <div class="dashboard-left">
+            <!-- Estado de Servicios Críticos -->
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="icon">📊</span>
+                        Estado de Servicios Críticos
+                    </h2>
+                    <p class="card-subtitle">Monitoreo directo de proveedores cloud</p>
+                </div>
+
+                <div class="services-grid">
+                    @{
+                        var awsServices = Model.CriticalServices.Where(s => s.Provider == "AWS CORE SERVICES").ToList();
+                        var azureServices = Model.CriticalServices.Where(s => s.Provider == "MICROSOFT AZURE").ToList();
+                    }
+
+                    <!-- AWS Services -->
+                    <div class="provider-section">
+                        <h3 class="provider-title">AWS CORE SERVICES</h3>
+                        <div class="services-list">
+                            @foreach (var service in awsServices)
+                            {
+                                <div class="service-item">
+                                    <div class="service-status" style="border-left: 4px solid @service.StatusColor">
+                                        <span class="status-indicator" style="background-color: @service.StatusColor">@service.Icon</span>
+                                        <span class="service-name">@service.ServiceName</span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Azure Services -->
+                    <div class="provider-section">
+                        <h3 class="provider-title">MICROSOFT AZURE</h3>
+                        <div class="services-list">
+                            @foreach (var service in azureServices)
+                            {
+                                <div class="service-item">
+                                    <div class="service-status" style="border-left: 4px solid @service.StatusColor">
+                                        <span class="status-indicator" style="background-color: @service.StatusColor">@service.Icon</span>
+                                        <span class="service-name">@service.ServiceName</span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Right Column - API Sync -->
+        <div class="dashboard-right">
+            <section class="dashboard-card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="icon">🔄</span>
+                        SYNC DE APIS
+                    </h2>
+                    <div class="sync-badge">LIVE AUTO-SYNC</div>
+                </div>
+
+                <div class="api-sync-list">
+                    @foreach (var api in Model.ApiSyncs)
+                    {
+                        <div class="api-item">
+                            <div class="api-header">
+                                <span class="api-name">@api.Name</span>
+                                <span class="api-status" style="background-color: @api.StatusColor">@api.Status</span>
+                            </div>
+                            <div class="api-details">
+                                <span class="api-lastsync">@api.LastSync</span>
+                                <span class="api-synctype">@api.SyncType</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <!-- Sync Metrics -->
+                <div class="sync-metrics">
+                    <div class="metric">
+                        <div class="metric-label">LATENCIA API</div>
+                        <div class="metric-value">@Model.LatencyMs<span class="metric-unit">ms</span></div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label">UPTIME/SEMANAL</div>
+                        <div class="metric-value" style="color: #10b981;">@Model.UptimePercent<span class="metric-unit">%</span></div>
+                    </div>
+                </div>
+
+                <!-- Sync Info -->
+                <div class="sync-info">
+                    <div class="info-item">
+                        <span class="info-icon">⏱️</span>
+                        <span class="info-text">SINCRONIZACIÓN GLOBAL</span>
+                        <span class="info-value">Último Ciclo: @Model.LastSyncTime</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+<style>
+.dashboard-container {
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+.header-left {
+    flex: 1;
+}
+
+.dashboard-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0 0 8px 0;
+}
+
+.dashboard-subtitle {
+    color: #94a3b8;
+    font-size: 14px;
+    margin: 0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.motor-analisis {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    padding: 8px 16px;
+    border-radius: 6px;
+}
+
+.motor-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.motor-icon {
+    font-size: 14px;
+}
+
+.btn-actualizar {
+    background-color: #60a5fa;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-actualizar:hover {
+    background-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.4);
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.dashboard-card {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #334155;
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.icon {
+    font-size: 20px;
+}
+
+.card-subtitle {
+    color: #94a3b8;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* Services Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.provider-section {
+    background-color: #0f172a;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.provider-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 16px 0;
+}
+
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+}
+
+.service-status {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background-color: rgba(96, 165, 250, 0.05);
+    border-radius: 6px;
+    width: 100%;
+}
+
+.status-indicator {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+}
+
+.service-name {
+    color: #cbd5e1;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* API Sync Section */
+.sync-badge {
+    display: inline-block;
+    background-color: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #10b981;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.api-sync-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.api-item {
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.api-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.api-name {
+    color: #f1f5f9;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.api-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+}
+
+.api-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.api-lastsync {
+    color: #94a3b8;
+}
+
+.api-synctype {
+    color: #64748b;
+}
+
+/* Metrics */
+.sync-metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 16px 0;
+    border-top: 1px solid #334155;
+    border-bottom: 1px solid #334155;
+    margin-bottom: 16px;
+}
+
+.metric {
+    text-align: center;
+}
+
+.metric-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.metric-value {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 4px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #ef4444;
+}
+
+.metric-unit {
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* Sync Info */
+.sync-info {
+    padding: 16px;
+    background-color: rgba(96, 165, 250, 0.05);
+    border-left: 3px solid #60a5fa;
+    border-radius: 6px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-icon {
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.info-text {
+    font-size: 11px;
+    font-weight: 700;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-value {
+    font-size: 12px;
+    color: #60a5fa;
+}
+
+/* Responsive */
+@@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@@media (max-width: 768px) {
+    .dashboard-container {
+        padding: 16px;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .dashboard-title {
+        font-size: 24px;
+    }
+}
+</style>
