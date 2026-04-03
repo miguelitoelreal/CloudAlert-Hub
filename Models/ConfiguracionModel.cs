@@ -29,11 +29,23 @@ public class ReglaMotor
     public string? Accion { get; set; }
 }
 
+public class ServicioMonitoreo
+{
+    public int Id { get; set; }
+    public string? Nombre { get; set; }
+    public string? Proveedor { get; set; }
+    public string? Icono { get; set; }
+    public bool Seleccionado { get; set; }
+}
+
 public class ConfiguracionPageModel
 {
     public List<ProveedorCloud>? Proveedores { get; set; }
     public List<GrupoRespuesta>? Grupos { get; set; }
     public List<ReglaMotor>? Reglas { get; set; }
+    public List<ServicioMonitoreo>? Servicios { get; set; }
     public string? GrupoSeleccionadoManual { get; set; }
     public string? ResumenManual { get; set; }
+    public int IntervaloActualizacion { get; set; } = 5;
+    public string? UnidadIntervalo { get; set; } = "minutos";
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("trabajo de SF2")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ed6ebd7a174597f13b1e10f30330fd3a30ac5b3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4693df8c4350b09f834c814ba1cccd47ef61066f")]
 [assembly: System.Reflection.AssemblyProductAttribute("trabajo de SF2")]
 [assembly: System.Reflection.AssemblyTitleAttribute("trabajo de SF2")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -308,8 +308,26 @@ public class HomeController : Controller
                     Accion = "Notificar SRE"
                 }
             },
+            Servicios = new List<ServicioMonitoreo>
+            {
+                new ServicioMonitoreo { Id = 1, Nombre = "EC2 Instances", Proveedor = "AWS", Icono = "🖥️", Seleccionado = true },
+                new ServicioMonitoreo { Id = 2, Nombre = "S3 Storage", Proveedor = "AWS", Icono = "📦", Seleccionado = true },
+                new ServicioMonitoreo { Id = 3, Nombre = "Lambda Functions", Proveedor = "AWS", Icono = "⚡", Seleccionado = false },
+                new ServicioMonitoreo { Id = 4, Nombre = "RDS Database", Proveedor = "AWS", Icono = "🗄️", Seleccionado = true },
+                new ServicioMonitoreo { Id = 5, Nombre = "CloudWatch", Proveedor = "AWS", Icono = "👁️", Seleccionado = false },
+                new ServicioMonitoreo { Id = 6, Nombre = "Entra ID", Proveedor = "Azure", Icono = "🔐", Seleccionado = true },
+                new ServicioMonitoreo { Id = 7, Nombre = "SQL Managed", Proveedor = "Azure", Icono = "🗄️", Seleccionado = true },
+                new ServicioMonitoreo { Id = 8, Nombre = "App Services", Proveedor = "Azure", Icono = "🌐", Seleccionado = false },
+                new ServicioMonitoreo { Id = 9, Nombre = "Azure VMs", Proveedor = "Azure", Icono = "🖥️", Seleccionado = false },
+                new ServicioMonitoreo { Id = 10, Nombre = "Cosmos DB", Proveedor = "Azure", Icono = "🌍", Seleccionado = false },
+                new ServicioMonitoreo { Id = 11, Nombre = "Exchange Online", Proveedor = "M365", Icono = "📧", Seleccionado = true },
+                new ServicioMonitoreo { Id = 12, Nombre = "SharePoint Online", Proveedor = "M365", Icono = "📁", Seleccionado = false },
+                new ServicioMonitoreo { Id = 13, Nombre = "Teams", Proveedor = "M365", Icono = "💬", Seleccionado = false }
+            },
             GrupoSeleccionadoManual = "DevOps",
-            ResumenManual = "Evento manual..."
+            ResumenManual = "Evento manual...",
+            IntervaloActualizacion = 5,
+            UnidadIntervalo = "minutos"
         };
 
         return View(model);
