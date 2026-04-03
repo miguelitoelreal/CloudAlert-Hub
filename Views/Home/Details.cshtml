@@ -1,0 +1,520 @@
+@model trabajo_de_SF2.Models.IncidentModel
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="incident-details-container">
+    <!-- Header -->
+    <div class="incident-header">
+        <div class="incident-header-top">
+            <div class="incident-title-section">
+                <span class="severity-badge" style="background-color: @Model.SeverityColor">@Model.Severity</span>
+                <span class="provider-badge">@Model.ProviderIcon @Model.Provider</span>
+                <h1 class="incident-title">@Model.Title</h1>
+            </div>
+            <div class="incident-header-actions">
+                <button class="btn-export-incident">📄 Exportar Informe</button>
+                <button class="btn-notify-incident">🔔 Enviar Notificaciones</button>
+            </div>
+        </div>
+        
+        <div class="incident-meta">
+            <div class="meta-item">
+                <span class="meta-icon">⏱️</span>
+                <span class="meta-label">Duración:</span>
+                <span class="meta-value">@Model.Duration</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-icon">📍</span>
+                <span class="meta-label">@Model.Location</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="incident-content">
+        <div class="incident-main">
+            <!-- Root Cause Analysis -->
+            <section class="incident-section">
+                <div class="section-header">
+                    <span class="section-icon">🔍</span>
+                    <h2>Análisis de Causa Raíz</h2>
+                </div>
+                <div class="section-content">
+                    @foreach (var line in Model.RootCauseAnalysis.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        <p>@line</p>
+                    }
+                </div>
+            </section>
+
+            <!-- Impacted Services -->
+            <section class="incident-section">
+                <div class="section-header">
+                    <span class="section-icon">⚠️</span>
+                    <h2>Impacto Interno</h2>
+                </div>
+                <div class="impact-grid">
+                    @foreach (var service in Model.ImpactedServices)
+                    {
+                        <div class="impact-card">
+                            <div class="impact-severity" style="border-left: 4px solid @service.SeverityColor">
+                                <span class="impact-badge" style="background-color: @service.SeverityColor">@service.Severity</span>
+                                <span class="impact-service">@service.ServiceName</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <!-- Official Links -->
+            <section class="incident-section">
+                <div class="section-header">
+                    <span class="section-icon">🔗</span>
+                    <h2>Enlaces Oficiales y Recursos</h2>
+                </div>
+                <div class="links-grid">
+                    @foreach (var link in Model.OfficialLinks)
+                    {
+                        <a href="#" class="link-item">@link <span class="link-icon">↗</span></a>
+                    }
+                </div>
+            </section>
+
+            <!-- Technical Details -->
+            <section class="incident-section">
+                <div class="section-header">
+                    <span class="section-icon">⚙️</span>
+                    <h2>Carga Técnica (JSON)</h2>
+                </div>
+                <div class="technical-content">
+                    <code>@Model.TechnicalDetails</code>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="incident-sidebar">
+            <!-- Timeline -->
+            <section class="sidebar-section">
+                <h3 class="sidebar-title">⏰ Cronología</h3>
+                <div class="timeline">
+                    @foreach (var evt in Model.Timeline)
+                    {
+                        <div class="timeline-item">
+                            <div class="timeline-time">@evt.Time</div>
+                            <div class="timeline-desc">@evt.Description</div>
+                        </div>
+                    }
+                </div>
+            </section>
+
+            <!-- Responders -->
+            <section class="sidebar-section">
+                <h3 class="sidebar-title">👥 Respondedores</h3>
+                <div class="responders-list">
+                    @foreach (var responder in Model.Responders)
+                    {
+                        <div class="responder-item">
+                            <div class="responder-status" style="background-color: @(responder.Status ? "#10b981" : "#ef4444")"></div>
+                            <div class="responder-info">
+                                <div class="responder-role">@responder.Role</div>
+                                @if (!string.IsNullOrEmpty(responder.Name))
+                                {
+                                    <div class="responder-name">@responder.Name</div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </section>
+        </aside>
+    </div>
+
+    <!-- Back Button -->
+    <div class="incident-footer">
+        <a href="@Url.Action("Index")" class="btn-back">← Volver a Incidentes</a>
+    </div>
+</div>
+
+<style>
+.incident-details-container {
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.incident-header {
+    margin-bottom: 30px;
+}
+
+.incident-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.incident-title-section {
+    flex: 1;
+}
+
+.severity-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    margin-right: 12px;
+    text-transform: uppercase;
+}
+
+.provider-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: rgba(96, 165, 250, 0.15);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    border-radius: 6px;
+    font-size: 12px;
+    color: #60a5fa;
+    font-weight: 600;
+    margin-right: 12px;
+}
+
+.incident-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 12px 0 0 0;
+}
+
+.incident-header-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-export-incident,
+.btn-notify-incident {
+    background-color: #60a5fa;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-export-incident:hover,
+.btn-notify-incident:hover {
+    background-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.4);
+}
+
+.incident-meta {
+    display: flex;
+    gap: 30px;
+    padding: 16px 0;
+    border-bottom: 1px solid #334155;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #cbd5e1;
+    font-size: 14px;
+}
+
+.meta-icon {
+    font-size: 16px;
+}
+
+.meta-value {
+    color: #f1f5f9;
+    font-weight: 600;
+}
+
+.incident-content {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.incident-section {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.section-icon {
+    font-size: 20px;
+}
+
+.section-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.section-content {
+    color: #cbd5e1;
+    line-height: 1.6;
+}
+
+.section-content p {
+    margin-bottom: 12px;
+}
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.impact-card {
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.impact-severity {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.impact-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    width: fit-content;
+    text-transform: uppercase;
+}
+
+.impact-service {
+    color: #f1f5f9;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.link-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px; background-color: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: #60a5fa;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.link-item:hover {
+    background-color: rgba(96, 165, 250, 0.1);
+    border-color: #60a5fa;
+}
+
+.link-icon {
+    font-size: 12px;
+}
+
+.technical-content {
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #10b981;
+    overflow-x: auto;
+}
+
+/* Sidebar */
+.incident-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.sidebar-section {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.sidebar-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0 0 16px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.timeline-item {
+    display: flex;
+    gap: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #334155;
+}
+
+.timeline-item:last-child {
+    border-bottom: none;
+}
+
+.timeline-time {
+    color: #60a5fa;
+    font-weight: 700;
+    font-size: 12px;
+    min-width: 70px;
+}
+
+.timeline-desc {
+    color: #cbd5e1;
+    font-size: 12px;
+}
+
+.responders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.responder-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background-color: #0f172a;
+    border-radius: 6px;
+    border: 1px solid #334155;
+}
+
+.responder-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.responder-info {
+    flex: 1;
+}
+
+.responder-role {
+    color: #cbd5e1;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.responder-name {
+    color: #64748b;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+/* Footer */
+.incident-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #334155;
+}
+
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #60a5fa;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
+/* Responsive */
+@@media (max-width: 1024px) {
+    .incident-content {
+        grid-template-columns: 1fr;
+    }
+
+    .links-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@@media (max-width: 768px) {
+    .incident-details-container {
+        padding: 16px;
+    }
+
+    .incident-header-top {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .incident-header-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .btn-export-incident,
+    .btn-notify-incident {
+        width: 100%;
+    }
+
+    .incident-title {
+        font-size: 24px;
+    }
+
+    .incident-meta {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .impact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
