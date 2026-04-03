@@ -210,6 +210,111 @@ public class HomeController : Controller
         return NotFound();
     }
 
+    public IActionResult Clientes(string? filter = "Todos", int page = 1)
+    {
+        var allClients = new List<ClientModel>
+        {
+            new ClientModel { Id = 1, CompanyName = "Global Tech Solutions", Service = "AWS", ServiceIcon = "🟠", AdminEmail = "admin@globaltech.com", CreatedDate = DateTime.Now.AddDays(-30) },
+            new ClientModel { Id = 2, CompanyName = "Finanza International", Service = "AZURE", ServiceIcon = "🔵", AdminEmail = "ops@finanza.io", CreatedDate = DateTime.Now.AddDays(-45) },
+            new ClientModel { Id = 3, CompanyName = "Lumina Logistics", Service = "M365", ServiceIcon = "🟢", AdminEmail = "j.doe@lumina.com", CreatedDate = DateTime.Now.AddDays(-7) }
+        };
+
+        var filteredClients = filter switch
+        {
+            "AWS" => allClients.Where(c => c.Service == "AWS").ToList(),
+            "Azure" => allClients.Where(c => c.Service == "AZURE").ToList(),
+            "M365" => allClients.Where(c => c.Service == "M365").ToList(),
+            _ => allClients
+        };
+
+        var pageSize = 10;
+        var totalPages = (int)Math.Ceiling((double)filteredClients.Count / pageSize);
+        var paginatedClients = filteredClients.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+        var model = new ClientsPageModel
+        {
+            Clients = paginatedClients,
+            TotalClients = filteredClients.Count,
+            CurrentPage = page,
+            TotalPages = totalPages,
+            FilterService = filter
+        };
+
+        return View(model);
+    }
+
+    public IActionResult Configuracion()
+    {
+        var model = new ConfiguracionPageModel
+        {
+            Proveedores = new List<ProveedorCloud>
+            {
+                new ProveedorCloud 
+                { 
+                    Id = 1, 
+                    Nombre = "AWS", 
+                    IconoUrl = "🟠", 
+                    Estado = "CONECTADO", 
+                    ColorEstado = "#10b981",
+                    ClaveAcceso = "AKIAIOSFODNN7EXAMPLE",
+                    TokenSecretoDisfrazado = "••••••••••••••••••••••••••••",
+                    TipoDato = "API Key",
+                    ValorTipoDato = "EXAMPLEKEY123"
+                },
+                new ProveedorCloud 
+                { 
+                    Id = 2, 
+                    Nombre = "AZURE_", 
+                    IconoUrl = "🔵", 
+                    Estado = "CONECTADO", 
+                    ColorEstado = "#10b981",
+                    ClaveAcceso = "12a34b56-78cd-9012-ef34-56ab78cd90",
+                    TokenSecretoDisfrazado = "••••••••••••••••••••••••••••",
+                    TipoDato = "Client ID",
+                    ValorTipoDato = "EXAMPLECLIENT456"
+                }
+            },
+            Grupos = new List<GrupoRespuesta>
+            {
+                new GrupoRespuesta 
+                { 
+                    Id = 1, 
+                    Nombre = "DevOps", 
+                    Correo = "desvops@cra.com",
+                    Icono = "👨‍💻"
+                },
+                new GrupoRespuesta 
+                { 
+                    Id = 2, 
+                    Nombre = "SRE Team", 
+                    Correo = "sre-oncall@cra.com",
+                    Icono = "🛡️"
+                }
+            },
+            Reglas = new List<ReglaMotor>
+            {
+                new ReglaMotor 
+                { 
+                    Id = 1, 
+                    Condicion = "Si", 
+                    Descripccion = "AWS Lambda estado es crítico",
+                    Accion = "Notificar DevOps"
+                },
+                new ReglaMotor 
+                { 
+                    Id = 2, 
+                    Condicion = "Si", 
+                    Descripccion = "Azure SQL latencia > 200ms",
+                    Accion = "Notificar SRE"
+                }
+            },
+            GrupoSeleccionadoManual = "DevOps",
+            ResumenManual = "Evento manual..."
+        };
+
+        return View(model);
+    }
+
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {

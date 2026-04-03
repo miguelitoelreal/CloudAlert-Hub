@@ -93,4 +93,5 @@ C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\refint\trabajo de SF2.dl
 C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\trabajo de SF2.pdb
 C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\trabajo de SF2.genruntimeconfig.cache
 C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\ref\trabajo de SF2.dll
-C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\7v2w5zsqnh-4g7ic1qgqm.gz
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\trabajo de SF2.sourcelink.json
+C:\Users\ALONSO\Desktop\trabajo de SF2\obj\Debug\net9.0\compressed\7v2w5zsqnh-g7alhpp6vg.gz
