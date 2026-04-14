@@ -1,207 +1,74 @@
 ﻿@{
-    ViewData["Title"] = "Estado de Servicios";
+    ViewData["Title"] = "Estado Global: Operativo";
 }
 
-<div class="services-container">
-    <h1 class="services-title">Estado de Servicios</h1>
-    
-    <div class="services-grid">
-        <!-- EC2 Instances -->
-        <div class="service-card">
-            <div class="service-header">
-                <div class="service-icon">☁️</div>
-                <div class="service-name">
-                    <h3>EC2 Instances</h3>
-                    <p class="service-provider">AWS</p>
-                </div>
-                <span class="status-badge status-active">Activo</span>
-            </div>
-            <div class="service-body">
-                <div class="availability-item">
-                    <label>Disponibilidad</label>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 99.99%; background-color: #10b981;"></div>
-                        <span class="percentage">99.99%</span>
-                    </div>
-                </div>
-                <p class="last-check">Última comprobación: hace 9 min</p>
-            </div>
-        </div>
+<div class="dashboard-content">
+    <!-- Filtros -->
+    <aside class="filters">
+        <h3>Proveedores Cloud</h3>
+        <ul>
+            <li><input type="checkbox" checked /> Todos</li>
+            <li><input type="checkbox" /> Azure</li>
+            <li><input type="checkbox" /> AWS</li>
+            <li><input type="checkbox" /> Microsoft 365</li>
+        </ul>
 
-        <!-- RDS Database -->
-        <div class="service-card">
-            <div class="service-header">
-                <div class="service-icon">🗄️</div>
-                <div class="service-name">
-                    <h3>RDS Database</h3>
-                    <p class="service-provider">AWS</p>
-                </div>
-                <span class="status-badge status-warning">Advertencia</span>
-            </div>
-            <div class="service-body">
-                <div class="availability-item">
-                    <label>Disponibilidad</label>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 99.85%; background-color: #f59e0b;"></div>
-                        <span class="percentage">99.85%</span>
-                    </div>
-                </div>
-                <p class="last-check">Última comprobación: hace 2 min</p>
-            </div>
-        </div>
+        <h3>Filtro de Severidad</h3>
+        <ul>
+            <li><input type="radio" name="severity" /> Crítico (P0) <span style="color: #ef4444;">2</span></li>
+            <li><input type="radio" name="severity" /> Mayor (P1) <span style="color: #f59e0b;">5</span></li>
+            <li><input type="radio" name="severity" /> Menor (P2) <span style="color: #10b981;">12</span></li>
+        </ul>
+        <button class="reset-filters">Restablecer Filtros</button>
+    </aside>
 
-        <!-- Lambda Functions -->
-        <div class="service-card">
-            <div class="service-header">
-                <div class="service-icon">⚡</div>
-                <div class="service-name">
-                    <h3>Lambda Functions</h3>
-                    <p class="service-provider">AWS</p>
-                </div>
-                <span class="status-badge status-active">Activo</span>
-            </div>
-            <div class="service-body">
-                <div class="availability-item">
-                    <label>Disponibilidad</label>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 99.98%; background-color: #10b981;"></div>
-                        <span class="percentage">99.98%</span>
-                    </div>
-                </div>
-                <p class="last-check">Última comprobación: hace 4 min</p>
-            </div>
-        </div>
+    <!-- Tabla de Incidentes -->
+    <section class="incidents">
+        <h2>Incidentes Activos</h2>
+        <p>Monitoreo de disponibilidad en tiempo real.</p>
 
-        <!-- Virtual Machines -->
-        <div class="service-card">
-            <div class="service-header">
-                <div class="service-icon">💻</div>
-                <div class="service-name">
-                    <h3>Virtual Machines</h3>
-                    <p class="service-provider">Azure</p>
-                </div>
-                <span class="status-badge status-active">Activo</span>
-            </div>
-            <div class="service-body">
-                <div class="availability-item">
-                    <label>Disponibilidad</label>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 99.95%; background-color: #10b981;"></div>
-                        <span class="percentage">99.95%</span>
-                    </div>
-                </div>
-                <p class="last-check">Última comprobación: hace 5 min</p>
-            </div>
-        </div>
-
-        <!-- Azure SQL -->
-        <div class="service-card">
-            <div class="service-header">
-                <div class="service-icon">🗃️</div>
-                <div class="service-name">
-                    <h3>Azure SQL</h3>
-                    <p class="service-provider">Azure</p>
-                </div>
-                <span class="status-badge status-critical">Crítico</span>
-            </div>
-            <div class="service-body">
-                <div class="availability-item">
-                    <label>Disponibilidad</label>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 95.2%; background-color: #ef4444;"></div>
-                        <span class="percentage">95.2%</span>
-                    </div>
-                </div>
-                <p class="last-check">Última comprobación: hace 2 min</p>
-            </div>
-        </div>
-
-        <!-- App Services -->
-        <div class="service-card">
-            <div class="service-header">
-                <div class="service-icon">🌐</div>
-                <div class="service-name">
-                    <h3>App Services</h3>
-                    <p class="service-provider">Azure</p>
-                </div>
-                <span class="status-badge status-active">Activo</span>
-            </div>
-            <div class="service-body">
-                <div class="availability-item">
-                    <label>Disponibilidad</label>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 99.92%; background-color: #10b981;"></div>
-                        <span class="percentage">99.92%</span>
-                    </div>
-                </div>
-                <p class="last-check">Última comprobación: hace 6 min</p>
-            </div>
-        </div>
-
-        <!-- Compute Engine -->
-        <div class="service-card">
-            <div class="service-header">
-                <div class="service-icon">🔧</div>
-                <div class="service-name">
-                    <h3>Compute Engine</h3>
-                    <p class="service-provider">Google Cloud</p>
-                </div>
-                <span class="status-badge status-active">Activo</span>
-            </div>
-            <div class="service-body">
-                <div class="availability-item">
-                    <label>Disponibilidad</label>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 99.97%; background-color: #10b981;"></div>
-                        <span class="percentage">99.97%</span>
-                    </div>
-                </div>
-                <p class="last-check">Última comprobación: hace 9 min</p>
-            </div>
-        </div>
-
-        <!-- Cloud Storage -->
-        <div class="service-card">
-            <div class="service-header">
-                <div class="service-icon">📦</div>
-                <div class="service-name">
-                    <h3>Cloud Storage</h3>
-                    <p class="service-provider">Google Cloud</p>
-                </div>
-                <span class="status-badge status-warning">Advertencia</span>
-            </div>
-            <div class="service-body">
-                <div class="availability-item">
-                    <label>Disponibilidad</label>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 99.5%; background-color: #f59e0b;"></div>
-                        <span class="percentage">99.5%</span>
-                    </div>
-                </div>
-                <p class="last-check">Última comprobación: hace 7 min</p>
-            </div>
-        </div>
-
-        <!-- Kubernetes Engine -->
-        <div class="service-card">
-            <div class="service-header">
-                <div class="service-icon">☸️</div>
-                <div class="service-name">
-                    <h3>Kubernetes Engine</h3>
-                    <p class="service-provider">Google Cloud</p>
-                </div>
-                <span class="status-badge status-active">Activo</span>
-            </div>
-            <div class="service-body">
-                <div class="availability-item">
-                    <label>Disponibilidad</label>
-                    <div class="progress-container">
-                        <div class="progress-bar" style="width: 99.96%; background-color: #10b981;"></div>
-                        <span class="percentage">99.96%</span>
-                    </div>
-                </div>
-                <p class="last-check">Última comprobación: hace 4 min</p>
-            </div>
-        </div>
-    </div>
+        <table class="incidents-table">
+            <thead>
+                <tr>
+                    <th>Proveedor</th>
+                    <th>Servicio Afectado</th>
+                    <th>Severidad</th>
+                    <th>Duración</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>🔵 Azure</td>
+                    <td>Base de Datos SQL (East US)</td>
+                    <td class="critical">CRÍTICO</td>
+                    <td>02:14:45</td>
+                    <td><a href="#">Ver Detalles</a></td>
+                </tr>
+                <tr>
+                    <td>🟠 AWS</td>
+                    <td>Almacenamiento S3</td>
+                    <td class="major">MAYOR</td>
+                    <td>00:45:12</td>
+                    <td><a href="#">Ver Detalles</a></td>
+                </tr>
+                <tr>
+                    <td>🟢 Microsoft 365</td>
+                    <td>Exchange Online Sync</td>
+                    <td class="minor">MENOR</td>
+                    <td>05:22:19</td>
+                    <td><a href="#">Ver Detalles</a></td>
+                </tr>
+                <tr>
+                    <td>🔵 Azure</td>
+                    <td>Autenticación AD</td>
+                    <td class="major">MAYOR</td>
+                    <td>00:12:39</td>
+                    <td><a href="#">Ver Detalles</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="margin-top: 24px; color: #64748b; font-size: 12px;">Mostrando 4 de 10 incidentes activos</p>
+    </section>
 </div>
+

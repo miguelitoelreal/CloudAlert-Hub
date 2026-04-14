@@ -1,70 +1,87 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - trabajo_de_SF2</title>
+    <title>@ViewData["Title"] - CloudAlert Hub</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/trabajo_de_SF2.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar-custom">
-            <div class="navbar-container">
-                <!-- Logo -->
-                <div class="navbar-brand-custom">
-                    <a asp-area="" asp-controller="Home" asp-action="Index">
-                        <span class="brand-icon">⚡</span>
-                    </a>
+    <div class="app-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <span class="logo-icon">🚨</span>
+                    <span class="logo-text">CloudAlert<span class="logo-hub">Hub</span></span>
                 </div>
-
-                <!-- Menu Items -->
-                <ul class="navbar-menu">
-                    <li class="nav-item-custom">
-                        <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link-custom active">Home</a>
-                    </li>
-                    <li class="nav-item-custom">
-                        <a href="#" class="nav-link-custom">Dashboard</a>
-                    </li>
-                    <li class="nav-item-custom dropdown-custom">
-                        <a href="#" class="nav-link-custom">Product <span class="dropdown-icon">▼</span></a>
-                    </li>
-                    <li class="nav-item-custom dropdown-custom">
-                        <a href="#" class="nav-link-custom">Services <span class="dropdown-icon">▼</span></a>
-                    </li>
-                    <li class="nav-item-custom dropdown-custom">
-                        <a href="#" class="nav-link-custom">Tools <span class="dropdown-icon">▼</span></a>
-                    </li>
-                    <li class="nav-item-custom dropdown-custom">
-                        <a href="#" class="nav-link-custom">Resources <span class="dropdown-icon">▼</span></a>
-                    </li>
-                    <li class="nav-item-custom">
-                        <a href="#" class="nav-link-custom">Pricing</a>
-                    </li>
-                </ul>
-
-                <!-- Right Section -->
-                <div class="navbar-right">
-                    <button class="theme-toggle">🌙</button>
-                    <a href="#" class="btn-signin">Sign In</a>
-                    <a href="#" class="btn-signup">Sign Up</a>
-                </div>
+                <small class="logo-subtitle">SENTINEL STATE NODE</small>
             </div>
-        </nav>
-    </header>
-    <div class="container-main">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item-sidebar active" data-section="tablero">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-label">Tablero</span>
+                </a>
+                <a href="#" class="nav-item-sidebar" data-section="incidentes">
+                    <span class="nav-icon">🔔</span>
+                    <span class="nav-label">Incidentes</span>
+                </a>
+                <a href="#" class="nav-item-sidebar" data-section="clientes">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-label">Clientes</span>
+                </a>
+                <a href="#" class="nav-item-sidebar notificaciones" data-section="notificaciones">
+                    <span class="nav-icon">🔕</span>
+                    <span class="nav-label">Notificaciones</span>
+                </a>
+                <a href="#" class="nav-item-sidebar" data-section="configuracion">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-label">Configuración</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">AR</div>
+                    <div class="user-details">
+                        <div class="user-name">Admin Root</div>
+                        <div class="user-role">Centro de Respuesta</div>
+                    </div>
+                </div>
+                <button class="btn-close-session">Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-container">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <h1 class="page-title">@ViewData["Title"]</h1>
+                </div>
+                <div class="header-right">
+                    <button class="theme-toggle">🌙</button>
+                    <button class="btn-export">Exportar Reporte</button>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                @RenderBody()
+            </div>
+        </div>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - trabajo_de_SF2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
+    <footer class="app-footer">
+        <small class="footer-text">SISTEMA DE ESCANEO ACTIVO</small>
+        <small class="footer-info">ÚLTIMO REGISTRO: [14:48:12] La licencia de autorización Azure-AD expirá en nuevas nominaciones (45m)</small>
+        <small class="footer-lang">ACTUALIZACIÓN: EN 14s</small>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
