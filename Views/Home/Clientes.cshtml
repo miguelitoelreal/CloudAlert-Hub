@@ -1,0 +1,440 @@
+@model trabajo_de_SF2.Models.ClientsPageModel
+
+@{
+    ViewData["Title"] = "Gestión de Clientes";
+}
+
+<div class="clientes-container">
+    <!-- Header -->
+    <div class="clientes-header">
+        <h1 class="clientes-title">Gestión de Clientes</h1>
+        <p class="clientes-subtitle">Registro de cuentas y clasificación por tipo de servicio.</p>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="clientes-grid">
+        <!-- Left Column - Registration Form -->
+        <aside class="clientes-left">
+            <div class="register-card">
+                <div class="register-header">
+                    <span class="register-icon">👤</span>
+                    <h2 class="register-title">REGISTRAR CLIENTE</h2>
+                </div>
+
+                <form class="register-form">
+                    <div class="form-group">
+                        <label class="form-label">NOMBRE DE LA EMPRESA</label>
+                        <input type="text" class="form-input" placeholder="Ej: Global Tech" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">SERVICIO PRINCIPAL (IND-TI)</label>
+                        <select class="form-input">
+                            <option>Amazon Web Services (AWS)</option>
+                            <option>Microsoft Azure</option>
+                            <option>Microsoft 365</option>
+                            <option>Google Cloud</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">CORREO ADMINISTRADOR</label>
+                        <input type="email" class="form-input" placeholder="admin@empresa.com" />
+                    </div>
+
+                    <button type="submit" class="btn-guardar">GUARDAR CLIENTE</button>
+                </form>
+            </div>
+        </aside>
+
+        <!-- Right Column - Clients List -->
+        <section class="clientes-right">
+            <!-- Filters -->
+            <div class="clientes-filters">
+                <a href="@Url.Action("Clientes", new { filter = "Todos" })" class="filter-btn @(Model?.FilterService == "Todos" || Model?.FilterService == null ? "active" : "")">Todos</a>
+                <a href="@Url.Action("Clientes", new { filter = "AWS" })" class="filter-btn @(Model?.FilterService == "AWS" ? "active" : "")">AWS</a>
+                <a href="@Url.Action("Clientes", new { filter = "Azure" })" class="filter-btn @(Model?.FilterService == "Azure" ? "active" : "")">Azure</a>
+                <a href="@Url.Action("Clientes", new { filter = "M365" })" class="filter-btn @(Model?.FilterService == "M365" ? "active" : "")">M365</a>
+            </div>
+
+            <!-- Clients Table -->
+            <div class="clients-table-container">
+                <table class="clients-table">
+                    <thead>
+                        <tr>
+                            <th>CLIENTE</th>
+                            <th>SERVICIO</th>
+                            <th>ADMINISTRADOR</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model?.Clients != null && Model.Clients.Any())
+                        {
+                            @foreach (var client in Model.Clients)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="client-name">
+                                            <span class="client-badge"></span>
+                                            <div>
+                                                <div class="client-company">@client.CompanyName</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="service-badge">
+                                            @client.ServiceIcon @client.Service
+                                        </span>
+                                    </td>
+                                    <td>@client.AdminEmail</td>
+                                    <td>
+                                        <a href="#" class="action-btn">✏️</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination-info">
+                <span>@(Model?.TotalClients ?? 0) CLIENTES REGISTRADOS</span>
+                <div class="pagination-controls">
+                    @if (Model != null && Model.CurrentPage > 1)
+                    {
+                        <a href="@Url.Action("Clientes", new { page = Model.CurrentPage - 1, filter = Model.FilterService })" class="pagination-btn">Anterior</a>
+                    }
+                    <span class="page-info">@Model?.CurrentPage DE @Model?.TotalPages</span>
+                    @if (Model != null && Model.CurrentPage < Model.TotalPages)
+                    {
+                        <a href="@Url.Action("Clientes", new { page = Model.CurrentPage + 1, filter = Model.FilterService })" class="pagination-btn">Siguiente</a>
+                    }
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<style>
+.clientes-container {
+    padding: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.clientes-header {
+    margin-bottom: 30px;
+}
+
+.clientes-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0 0 8px 0;
+}
+
+.clientes-subtitle {
+    color: #94a3b8;
+    font-size: 14px;
+    margin: 0;
+}
+
+/* Grid Layout */
+.clientes-grid {
+    display: grid;
+    grid-template-columns: 450px 1fr;
+    gap: 30px;
+}
+
+/* Register Form */
+.register-card {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    height: fit-content;
+}
+
+.register-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #334155;
+}
+
+.register-icon {
+    font-size: 20px;
+}
+
+.register-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-input {
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: #e2e8f0;
+    font-size: 13px;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #60a5fa;
+    background-color: rgba(96, 165, 250, 0.05);
+}
+
+.form-input::placeholder {
+    color: #64748b;
+}
+
+.btn-guardar {
+    background-color: #60a5fa;
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+}
+
+.btn-guardar:hover {
+    background-color: #3b82f6;
+    box-shadow: 0 4px 12px rgba(96, 165, 250, 0.4);
+}
+
+/* Right Column */
+.clientes-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Filters */
+.clientes-filters {
+    display: flex;
+    gap: 12px;
+}
+
+.filter-btn {
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    border-color: #60a5fa;
+    color: #60a5fa;
+}
+
+.filter-btn.active {
+    background-color: #60a5fa;
+    border-color: #60a5fa;
+    color: white;
+}
+
+/* Table */
+.clients-table-container {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid #334155;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.clients-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.clients-table thead {
+    background-color: #0f172a;
+    border-bottom: 1px solid #334155;
+}
+
+.clients-table th {
+    color: #cbd5e1;
+    font-weight: 600;
+    padding: 16px 12px;
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.clients-table tbody tr {
+    border-bottom: 1px solid #1e293b;
+    transition: background-color 0.2s ease;
+}
+
+.clients-table tbody tr:hover {
+    background-color: rgba(96, 165, 250, 0.05);
+}
+
+.clients-table td {
+    padding: 16px 12px;
+    color: #e2e8f0;
+    font-size: 13px;
+}
+
+.client-name {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.client-badge {
+    width: 8px;
+    height: 8px;
+    background-color: #10b981;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.client-company {
+    color: #f1f5f9;
+    font-weight: 600;
+}
+
+.service-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    border-radius: 4px;
+    color: #60a5fa;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.action-btn {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    border-radius: 6px;
+    color: #60a5fa;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: rgba(96, 165, 250, 0.2);
+    border-color: #60a5fa;
+}
+
+/* Pagination */
+.pagination-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid #334155;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    font-size: 11px;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.pagination-btn {
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    color: #cbd5e1;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination-btn:hover {
+    border-color: #60a5fa;
+    color: #60a5fa;
+}
+
+.page-info {
+    color: #94a3b8;
+}
+
+/* Responsive */
+@@media (max-width: 1024px) {
+    .clientes-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@@media (max-width: 768px) {
+    .clientes-container {
+        padding: 16px;
+    }
+
+    .clientes-title {
+        font-size: 24px;
+    }
+
+    .pagination-info {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+}
+</style>

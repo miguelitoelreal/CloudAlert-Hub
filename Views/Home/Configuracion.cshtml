@@ -1,0 +1,699 @@
+@model trabajo_de_SF2.Models.ConfiguracionPageModel;
+
+<style>
+    .config-container {
+        display: flex;
+        gap: 30px;
+        padding: 30px;
+        max-width: 1400px;
+    }
+
+    .config-header {
+        margin-bottom: 30px;
+    }
+
+    .config-header h1 {
+        font-size: 2.5rem;
+        color: #ffffff;
+        margin: 0 0 10px 0;
+        font-weight: 700;
+    }
+
+    .config-header p {
+        color: #cbd5e1;
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    .config-left {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .config-right {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .config-section {
+        background: linear-gradient(135deg, #1a1f3a 0%, #0f172a 100%);
+        border: 1px solid #334155;
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 25px;
+        backdrop-filter: blur(10px);
+    }
+
+    .config-section h2 {
+        font-size: 1.3rem;
+        color: #ffffff;
+        margin: 0 0 10px 0;
+        font-weight: 600;
+    }
+
+    .config-section-desc {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+    .proveedor-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+        background: rgba(15, 23, 42, 0.5);
+        border: 1px solid #334155;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .proveedor-item:hover {
+        background: rgba(15, 23, 42, 0.8);
+        border-color: #64748b;
+    }
+
+    .proveedor-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex: 1;
+    }
+
+    .proveedor-icon {
+        font-size: 2rem;
+    }
+
+    .proveedor-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .proveedor-name {
+        color: #e2e8f0;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .proveedor-clave {
+        color: #94a3b8;
+        font-size: 0.85rem;
+        margin-top: 3px;
+        font-family: 'Courier New', monospace;
+    }
+
+    .proveedor-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .status-badge {
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #ffffff;
+    }
+
+    .status-connected {
+        background: rgba(16, 185, 129, 0.2);
+        color: #10b981;
+        border: 1px solid #10b981;
+    }
+
+    .config-btn {
+        padding: 6px 12px;
+        background: transparent;
+        border: 1px solid #475569;
+        color: #cbd5e1;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.3s ease;
+    }
+
+    .config-btn:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: #3b82f6;
+        color: #60a5fa;
+    }
+
+    .grupo-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+        background: rgba(15, 23, 42, 0.5);
+        border: 1px solid #334155;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .grupo-item:hover {
+        background: rgba(15, 23, 42, 0.8);
+        border-color: #64748b;
+    }
+
+    .grupo-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+    }
+
+    .grupo-icon {
+        font-size: 1.5rem;
+    }
+
+    .grupo-details {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .grupo-name {
+        color: #e2e8f0;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .grupo-email {
+        color: #94a3b8;
+        font-size: 0.85rem;
+        margin-top: 2px;
+    }
+
+    .grupo-actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    .btn-nuevo {
+        width: 100%;
+        padding: 12px;
+        background: #3b82f6;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+    }
+
+    .btn-nuevo:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
+    }
+
+    .regla-item {
+        padding: 15px;
+        background: rgba(15, 23, 42, 0.5);
+        border: 1px solid #334155;
+        border-radius: 8px;
+        margin-bottom: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .regla-item:hover {
+        background: rgba(15, 23, 42, 0.8);
+        border-color: #64748b;
+    }
+
+    .regla-condicion {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 10px;
+        align-items: center;
+    }
+
+    .regla-badge {
+        padding: 4px 10px;
+        background: #ef4444;
+        color: #ffffff;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 700;
+    }
+
+    .regla-text {
+        color: #cbd5e1;
+        font-size: 0.95rem;
+        flex: 1;
+    }
+
+    .regla-accion {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #60a5fa;
+        font-size: 0.9rem;
+    }
+
+    .regla-accion-icon {
+        background: rgba(96, 165, 250, 0.1);
+        padding: 4px 8px;
+        border-radius: 4px;
+    }
+
+    .btn-nueva-regla {
+        width: auto;
+        padding: 8px 16px;
+        background: #3b82f6;
+        color: #ffffff;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+    }
+
+    .btn-nueva-regla:hover {
+        background: #2563eb;
+    }
+
+    .envio-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-label {
+        color: #cbd5e1;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .form-select, .form-textarea {
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid #334155;
+        color: #e2e8f0;
+        padding: 12px 15px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-family: inherit;
+        transition: all 0.3s ease;
+    }
+
+    .form-select:focus, .form-textarea:focus {
+        outline: none;
+        border-color: #3b82f6;
+        background: rgba(15, 23, 42, 0.9);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .form-textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+
+    .btn-enviar {
+        padding: 12px 24px;
+        background: #3b82f6;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        align-self: flex-start;
+    }
+
+    .btn-enviar:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
+    }
+
+    .icon-action {
+        cursor: pointer;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .icon-action:hover {
+        transform: scale(1.2);
+    }
+
+    .servicios-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .servicio-checkbox {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 15px;
+        background: rgba(15, 23, 42, 0.5);
+        border: 2px solid #334155;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .servicio-checkbox:hover {
+        background: rgba(15, 23, 42, 0.8);
+        border-color: #64748b;
+    }
+
+    .servicio-checkbox input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        accent-color: #3b82f6;
+    }
+
+    .servicio-checkbox.checked {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: #3b82f6;
+    }
+
+    .servicio-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .servicio-nombre {
+        color: #e2e8f0;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
+
+    .servicio-proveedor {
+        color: #94a3b8;
+        font-size: 0.85rem;
+    }
+
+    .servicio-icono {
+        font-size: 1.5rem;
+    }
+
+    .intervalo-form {
+        display: flex;
+        gap: 15px;
+        align-items: flex-end;
+        margin-top: 20px;
+        padding: 15px;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid #3b82f6;
+        border-radius: 8px;
+    }
+
+    .intervalo-input {
+        flex: 0 0 120px;
+    }
+
+    .intervalo-select {
+        flex: 0 0 150px;
+    }
+
+    .intervalo-label {
+        color: #cbd5e1;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .form-input, .intervalo-select {
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid #334155;
+        color: #e2e8f0;
+        padding: 10px 12px;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        font-family: inherit;
+        transition: all 0.3s ease;
+    }
+
+    .form-input:focus, .intervalo-select:focus {
+        outline: none;
+        border-color: #3b82f6;
+        background: rgba(15, 23, 42, 0.9);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    @@media (max-width: 1024px) {
+        .config-container {
+            flex-direction: column;
+        }
+
+        .config-left, .config-right {
+            min-width: 100%;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .config-container {
+            padding: 15px;
+            gap: 15px;
+        }
+
+        .config-header h1 {
+            font-size: 1.8rem;
+        }
+
+        .config-section {
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .proveedor-item, .grupo-item, .regla-item {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .proveedor-actions, .grupo-actions {
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+</style>
+
+<div class="config-container">
+    <div class="config-left">
+        <div class="config-header">
+            <h1>Configuración</h1>
+            <p>Administra las conexiones de nube y automática la lógica de despacho de incidentes.</p>
+        </div>
+
+        <!-- Proveedores Cloud -->
+        <div class="config-section">
+            <h2>👁️ Proveedores Cloud</h2>
+            <p class="config-section-desc">Credenciales de integración directa.</p>
+
+            @if (Model?.Proveedores != null)
+            {
+                @foreach (var proveedor in Model.Proveedores)
+                {
+                    <div class="proveedor-item">
+                        <div class="proveedor-info">
+                            <div class="proveedor-icon">@proveedor.IconoUrl</div>
+                            <div class="proveedor-details">
+                                <div class="proveedor-name">@proveedor.Nombre</div>
+                                <div class="proveedor-clave">@proveedor.TipoDato</div>
+                            </div>
+                        </div>
+                        <div class="proveedor-actions">
+                            <span class="status-badge status-connected">@proveedor.Estado</span>
+                            <span class="@proveedor.ClaveAcceso.Substring(0, 8)..." title="@proveedor.ClaveAcceso" class="proveedor-clave">@proveedor.ClaveAcceso.Substring(0, 8)...</span>
+                            <span class="proveedor-clave">@proveedor.TokenSecretoDisfrazado</span>
+                            <button class="config-btn">⚙️</button>
+                        </div>
+                    </div>
+                }
+            }
+
+            <button class="btn-nuevo">+ Nuevo Proveedor</button>
+        </div>
+
+        <!-- Motor de Reglas -->
+        <div class="config-section">
+            <h2>⚡ Motor de Reglas</h2>
+            <p class="config-section-desc">Lógica condicional de despacho.</p>
+
+            @if (Model?.Reglas != null)
+            {
+                @foreach (var regla in Model.Reglas)
+                {
+                    <div class="regla-item">
+                        <div class="regla-condicion">
+                            <span class="regla-badge">@regla.Condicion</span>
+                            <span class="regla-text">@regla.Descripccion</span>
+                        </div>
+                        <div class="regla-accion">
+                            <span class="regla-accion-icon">→</span>
+                            <span>@regla.Accion</span>
+                        </div>
+                    </div>
+                }
+            }
+
+            <button class="btn-nueva-regla">+ Nueva Regla</button>
+        </div>
+
+        <!-- Servicios de Monitoreo -->
+        <div class="config-section">
+            <h2>📡 Servicios de Monitoreo</h2>
+            <p class="config-section-desc">Selecciona los servicios que deseas monitorear</p>
+
+            <div class="servicios-grid">
+                @if (Model?.Servicios != null)
+                {
+                    @foreach (var servicio in Model.Servicios)
+                    {
+                        <div class="servicio-checkbox @(servicio.Seleccionado ? "checked" : "")">
+                            <input type="checkbox" id="servicio_@servicio.Id" @(servicio.Seleccionado ? "checked" : "") />
+                            <div class="servicio-icono">@servicio.Icono</div>
+                            <div class="servicio-info">
+                                <div class="servicio-nombre">@servicio.Nombre</div>
+                                <div class="servicio-proveedor">@servicio.Proveedor</div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+            <!-- Intervalo de Actualización -->
+            <div class="intervalo-form">
+                <div class="intervalo-input">
+                    <label class="intervalo-label">Intervalo</label>
+                    <input type="number" class="form-input" value="@Model?.IntervaloActualizacion" min="1" max="1440" />
+                </div>
+                <div class="intervalo-select">
+                    <label class="intervalo-label">Unidad</label>
+                    <select class="intervalo-select">
+                        @if (Model?.UnidadIntervalo == "minutos")
+                        {
+                            <option selected>minutos</option>
+                            <option>horas</option>
+                            <option>días</option>
+                        }
+                        else if (Model?.UnidadIntervalo == "horas")
+                        {
+                            <option>minutos</option>
+                            <option selected>horas</option>
+                            <option>días</option>
+                        }
+                        else if (Model?.UnidadIntervalo == "días")
+                        {
+                            <option>minutos</option>
+                            <option>horas</option>
+                            <option selected>días</option>
+                        }
+                        else
+                        {
+                            <option selected>minutos</option>
+                            <option>horas</option>
+                            <option>días</option>
+                        }
+                    </select>
+                </div>
+                <button class="btn-nueva-regla">💾 Guardar Configuración</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="config-right">
+        <!-- Grupos de Respuesta -->
+        <div class="config-section">
+            <h2>👥 Grupos de Respuesta</h2>
+            <p class="config-section-desc">Destinatarios de incidentes.</p>
+
+            @if (Model?.Grupos != null)
+            {
+                @foreach (var grupo in Model.Grupos)
+                {
+                    <div class="grupo-item">
+                        <div class="grupo-info">
+                            <div class="grupo-icon">@grupo.Icono</div>
+                            <div class="grupo-details">
+                                <div class="grupo-name">@grupo.Nombre</div>
+                                <div class="grupo-email">@grupo.Correo</div>
+                            </div>
+                        </div>
+                        <div class="grupo-actions">
+                            <span class="icon-action" title="Editar">✏️</span>
+                            <span class="icon-action" title="Eliminar">🗑️</span>
+                        </div>
+                    </div>
+                }
+            }
+
+            <button class="btn-nuevo">+ Nuevo Grupo</button>
+        </div>
+
+        <!-- Envío Manual -->
+        <div class="config-section">
+            <h2>📤 Envío Manual</h2>
+            <div class="envio-form">
+                <div class="form-group">
+                    <label class="form-label">GRUPO</label>
+                    <select class="form-select">
+                        <option>@Model?.GrupoSeleccionadoManual</option>
+                        @if (Model?.Grupos != null)
+                        {
+                            @foreach (var grupo in Model.Grupos)
+                            {
+                                <option>@grupo.Nombre</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">RESUMEN</label>
+                    <textarea class="form-textarea" placeholder="Evento manual...">@Model?.ResumenManual</textarea>
+                </div>
+
+                <button class="btn-enviar">▶ Enviar Reporte</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Manejar checkboxes de servicios con efecto visual
+    document.querySelectorAll('.servicio-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('click', function(e) {
+            const input = this.querySelector('input[type="checkbox"]');
+            input.checked = !input.checked;
+            this.classList.toggle('checked');
+        });
+
+        const input = checkbox.querySelector('input[type="checkbox"]');
+        input.addEventListener('change', function(e) {
+            e.stopPropagation();
+            checkbox.classList.toggle('checked');
+        });
+    });
+
+    // Mostrar cantidad de servicios seleccionados
+    function actualizarContadorServicios() {
+        const seleccionados = document.querySelectorAll('.servicio-checkbox input[type="checkbox"]:checked').length;
+        console.log(`Servicios seleccionados: ${seleccionados}`);
+    }
+
+    document.querySelectorAll('.servicio-checkbox input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', actualizarContadorServicios);
+    });
+
+    actualizarContadorServicios();
+</script>
